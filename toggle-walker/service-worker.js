@@ -1,11 +1,11 @@
-const CACHE_NAME = 'toggle-walker-3823a3a72faa';
+const CACHE_NAME = 'toggle-walker-a0d0d5ef4dc5';
 const PRECACHE_URLS = [
   "/toggle-walker/",
   "/toggle-walker/assets/fa-solid-900-IAB4Droh.woff2",
   "/toggle-walker/assets/index-BJQT3_qr.css",
-  "/toggle-walker/assets/index-BwWLwqDr.js",
-  "/toggle-walker/assets/level-worker-D2WJnIap.js",
-  "/toggle-walker/assets/solver-tJUP-Vax.js",
+  "/toggle-walker/assets/index-nXIHe8Qj.js",
+  "/toggle-walker/assets/level-worker-5CinhZXh.js",
+  "/toggle-walker/assets/solver-Bt59QId6.js",
   "/toggle-walker/icons/icon-192.png",
   "/toggle-walker/icons/icon-512.png",
   "/toggle-walker/icons/icon.svg",
