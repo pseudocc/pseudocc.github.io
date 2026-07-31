@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121019">
+  <meta name="description" data-i18n-content="meta.description" content="A deterministic tile-lighting puzzle. Move smart. Spend less. Leave no tile dark.">
+  <link rel="manifest" href="/toggle-walker/manifest.webmanifest">
+  <link rel="icon" href="/toggle-walker/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/toggle-walker/icons/icon-192.png">
+  <title>Toggle Walker</title>
+  <script type="module" crossorigin src="/toggle-walker/assets/index-BwWLwqDr.js"></script>
+  <link rel="stylesheet" crossorigin href="/toggle-walker/assets/index-BJQT3_qr.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">✣</span>
+        <div>
+          <p class="eyebrow" data-i18n="brand.eyebrow">Deterministic puzzle</p>
+          <h1>Toggle <span>Walker</span></h1>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-button" id="picker-button" type="button" data-i18n-aria="aria.levelPicker" aria-label="Choose level">▦</button>
+        <button class="icon-button locale-button" id="locale-button" type="button" data-i18n-aria="aria.locale" aria-label="Switch to Simplified Chinese">简</button>
+        <button class="icon-button" id="help-button" type="button" data-i18n-aria="aria.help" aria-label="How to play">?</button>
+        <button class="icon-button" id="sound-button" type="button" data-i18n-aria="aria.sound" aria-label="Toggle sound" aria-pressed="true">♪</button>
+      </div>
+    </header>
+
+    <section id="game-view">
+    <section class="game-card" aria-labelledby="level-name">
+      <div class="level-row">
+        <button class="level-arrow" id="previous-level" type="button" data-i18n-aria="aria.previousLevel" aria-label="Previous level"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <div class="level-copy">
+          <p id="level-number">Level 01</p>
+          <h2 id="level-name">Crossfire</h2>
+          <span id="level-kicker">Warm up the walker</span>
+        </div>
+        <button class="level-arrow" id="next-level" type="button" data-i18n-aria="aria.nextLevel" aria-label="Next level"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="power-row">
+        <div class="score-strip">
+          <div class="points-display">
+            <span class="points-orb" aria-hidden="true"></span>
+            <div>
+              <small data-i18n="hud.power">Power</small>
+              <strong id="points">10</strong>
+            </div>
+          </div>
+          <div class="thresholds" data-i18n-aria="aria.thresholds" aria-label="Star thresholds">
+            <span><b>★★★</b><i id="three-star-score">7+</i></span>
+            <span><b>★★</b><i id="two-star-score">4+</i></span>
+            <span><b>★</b><i data-i18n="hud.clear">clear</i></span>
+          </div>
+        </div>
+        <div class="controls-row" role="group" data-i18n-aria="aria.utilityControls" aria-label="Game controls">
+          <button class="utility-button tooltip" id="undo-button" type="button" data-i18n-aria="aria.undo" aria-label="Undo">↶</button>
+          <button class="utility-button tooltip" id="restart-button" type="button" data-i18n-aria="aria.restart" aria-label="Restart">↺</button>
+          <button class="utility-button tooltip hint-button" id="hint-button" type="button" data-i18n-aria="aria.hint" aria-label="Hint">💡</button>
+        </div>
+      </div>
+
+      <div class="board-wrap">
+        <div class="board" id="board" role="grid" data-i18n-aria="aria.board" aria-label="5 by 5 puzzle board">
+          <div class="cursor" id="cursor" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <p class="mission"><span></span> <i data-i18n="mission">Light every tile. Actions never refund power.</i></p>
+
+      <div class="action-picker" role="radiogroup" data-i18n-aria="aria.tools" aria-label="Choose a tool">
+        <button class="action tooltip active" data-action="step" role="radio" aria-checked="true" aria-label="Step: Move 1 · flip landing" type="button">
+          <span class="action-icon step-icon" aria-hidden="true">→</span>
+          <span><strong data-i18n="actions.step.name">Step</strong><small data-i18n="actions.step.description">Move 1 · flip landing</small></span>
+          <em>−1</em>
+        </button>
+        <button class="action tooltip" data-action="dash" role="radio" aria-checked="false" aria-label="Dash: Move 2 · flip the trail" type="button">
+          <span class="action-icon dash-icon" aria-hidden="true">»</span>
+          <span><strong data-i18n="actions.dash.name">Dash</strong><small data-i18n="actions.dash.description">Move 2 · flip the trail</small></span>
+          <em>−1</em>
+        </button>
+        <button class="action tooltip" data-action="jump" role="radio" aria-checked="false" aria-label="Jump: Move within 2 · flip source + landing" type="button">
+          <span class="action-icon jump-icon" aria-hidden="true">⌁</span>
+          <span><strong data-i18n="actions.jump.name">Jump</strong><small data-i18n="actions.jump.description">Move within 2 · flip source + landing</small></span>
+          <em>−2</em>
+        </button>
+        <button class="action tooltip pulse-action" data-action="pulse" role="radio" aria-checked="false" aria-label="Pulse: Flip 4 neighbors" type="button">
+          <span class="action-icon pulse-icon" aria-hidden="true">✣</span>
+          <span><strong data-i18n="actions.pulse.name">Pulse</strong><small data-i18n="actions.pulse.description">Flip 4 neighbors</small></span>
+          <em>−3</em>
+        </button>
+      </div>
+
+      <p class="target-prompt" data-i18n="target.prompt">Choose a glowing destination</p>
+
+    </section>
+
+    <footer><span>1 / 2 / 3 / 4</span> <i data-i18n="footer.choose">choose tool</i></footer>
+    </section>
+
+    <section class="picker-view" id="picker-view" hidden>
+      <div class="picker-heading">
+        <button class="level-arrow" id="picker-back" type="button" data-i18n-aria="aria.backToGame" aria-label="Back to game"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <div>
+          <p class="eyebrow" data-i18n="picker.eyebrow">Progression</p>
+          <h2 data-i18n="picker.title">Choose a circuit</h2>
+        </div>
+        <p class="picker-total"><span aria-hidden="true">★</span><strong id="total-stars">0</strong></p>
+      </div>
+      <div class="picker-navigation">
+        <button class="level-arrow" id="picker-previous" type="button" data-i18n-aria="aria.previousPickerPage" aria-label="Previous picker page"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <button class="picker-range" id="picker-range" type="button">1–25</button>
+        <button class="level-arrow" id="picker-next" type="button" data-i18n-aria="aria.nextPickerPage" aria-label="Next picker page"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="level-grid" id="level-grid"></div>
+    </section>
+  </main>
+
+  <dialog id="help-dialog">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" data-i18n-aria="aria.close" aria-label="Close">×</button>
+      <p class="eyebrow" data-i18n="help.eyebrow">Field manual</p>
+      <h2 data-i18n="help.title">Leave no tile dark.</h2>
+      <ol>
+        <li><b data-i18n="help.chooseTitle">Choose a tool.</b> <span data-i18n="help.chooseBody">Step, dash, jump, or pulse.</span></li>
+        <li><b data-i18n="help.spendTitle">Spend power.</b> <span data-i18n="help.spendBody">Each tool has a fixed cost.</span></li>
+        <li><b data-i18n="help.lightTitle">Light tiles.</b> <span data-i18n="help.lightBody">Turning a tile white does not refund power.</span></li>
+        <li><b data-i18n="help.finishTitle">Finish rich.</b> <span data-i18n="help.finishBody">Your remaining power decides the stars.</span></li>
+      </ol>
+      <button class="primary-button dialog-close" type="button" data-i18n="help.dismiss">Got it</button>
+    </div>
+  </dialog>
+
+  <div class="result" id="result" hidden>
+    <div class="result-card">
+      <p class="eyebrow" id="result-label">Board illuminated</p>
+      <div class="result-stars" id="result-stars" data-i18n-aria="aria.stars" aria-label="Stars earned">★★★</div>
+      <h2 id="result-title">Clean work.</h2>
+      <p id="result-copy">You escaped with <strong>7</strong> power.</p>
+      <div class="result-actions">
+        <button class="secondary-button" id="result-retry" type="button" data-i18n="result.replay">Replay</button>
+        <button class="primary-button" id="result-next" type="button" data-i18n="result.next">Next puzzle →</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
