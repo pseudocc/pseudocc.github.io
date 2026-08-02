@@ -9,8 +9,8 @@
   <link rel="icon" href="/toggle-walker/icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/toggle-walker/icons/icon-192.png">
   <title>Toggle Walker</title>
-  <script type="module" crossorigin src="/toggle-walker/assets/index-nXIHe8Qj.js"></script>
-  <link rel="stylesheet" crossorigin href="/toggle-walker/assets/index-BJQT3_qr.css">
+  <script type="module" crossorigin src="/toggle-walker/assets/index-CK89hica.js"></script>
+  <link rel="stylesheet" crossorigin href="/toggle-walker/assets/index-Bsp0vO84.css">
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -32,12 +32,11 @@
     </header>
 
     <section id="game-view">
-    <section class="game-card" aria-labelledby="level-name">
+    <section class="game-card" aria-labelledby="level-number">
       <div class="level-row">
         <button class="level-arrow" id="previous-level" type="button" data-i18n-aria="aria.previousLevel" aria-label="Previous level"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
         <div class="level-copy">
           <p id="level-number">Level 01</p>
-          <h2 id="level-name">Crossfire</h2>
           <span id="level-kicker">Warm up the walker</span>
         </div>
         <button class="level-arrow" id="next-level" type="button" data-i18n-aria="aria.nextLevel" aria-label="Next level"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
@@ -78,21 +77,25 @@
           <span class="action-icon step-icon" aria-hidden="true">→</span>
           <span><strong data-i18n="actions.step.name">Step</strong><small data-i18n="actions.step.description">Move 1 · flip landing</small></span>
           <em>−1</em>
+          <span class="action-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i><small>Level 1</small></span>
         </button>
-        <button class="action tooltip" data-action="dash" role="radio" aria-checked="false" aria-label="Dash: Move 2 · flip the trail" type="button">
+        <button class="action tooltip locked" data-action="dash" role="radio" aria-checked="false" aria-label="Dash: unlocks at level 2" type="button" disabled>
           <span class="action-icon dash-icon" aria-hidden="true">»</span>
           <span><strong data-i18n="actions.dash.name">Dash</strong><small data-i18n="actions.dash.description">Move 2 · flip the trail</small></span>
           <em>−1</em>
+          <span class="action-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i><small>Level 2</small></span>
         </button>
-        <button class="action tooltip" data-action="jump" role="radio" aria-checked="false" aria-label="Jump: Move within 2 · flip source + landing" type="button">
+        <button class="action tooltip locked" data-action="jump" role="radio" aria-checked="false" aria-label="Jump: unlocks at level 10" type="button" disabled>
           <span class="action-icon jump-icon" aria-hidden="true">⌁</span>
           <span><strong data-i18n="actions.jump.name">Jump</strong><small data-i18n="actions.jump.description">Move within 2 · flip source + landing</small></span>
           <em>−2</em>
+          <span class="action-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i><small>Level 10</small></span>
         </button>
-        <button class="action tooltip pulse-action" data-action="pulse" role="radio" aria-checked="false" aria-label="Pulse: Flip 4 neighbors" type="button">
+        <button class="action tooltip pulse-action locked" data-action="pulse" role="radio" aria-checked="false" aria-label="Pulse: unlocks at level 20" type="button" disabled>
           <span class="action-icon pulse-icon" aria-hidden="true">✣</span>
           <span><strong data-i18n="actions.pulse.name">Pulse</strong><small data-i18n="actions.pulse.description">Flip 4 neighbors</small></span>
           <em>−3</em>
+          <span class="action-lock" aria-hidden="true"><i class="fa-solid fa-lock"></i><small>Level 20</small></span>
         </button>
       </div>
 
